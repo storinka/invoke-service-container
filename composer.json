@@ -1,0 +1,19 @@
+{
+  "name": "storinka/invoke-service-container",
+  "description": "Invoke Service Container",
+  "type": "library",
+  "license": "MIT",
+  "authors": [
+    {
+      "name": "Davyd Kohut",
+      "email": "davyd.kohut@gmail.com"
+    }
+  ],
+  "minimum-stability": "dev",
+  "require": {},
+  "autoload": {
+    "psr-4": {
+      "Invoke\\Di\\": "src"
+    }
+  }
+}
