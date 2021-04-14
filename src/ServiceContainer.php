@@ -23,17 +23,13 @@ class ServiceContainer
     public function get(string $abstract)
     {
         if (isset($this->services[$abstract])) {
-            $service = $this->services[$abstract];
+            $service = $this->services[$abstract] ?? null;
 
-            if (is_callable($service)) {
-                $service = $this->resolve($service);
-
-                $this->services[$abstract] = $service;
-            } else if ((is_string($service) && class_exists($service))) {
+            if (is_callable($service) || (is_string($service) && class_exists($service))) {
                 $service = $this->resolve($service);
             }
         } else if (isset($this->singletons[$abstract])) {
-            $service = $this->singletons[$abstract];
+            $service = $this->singletons[$abstract] ?? null;
 
             if (is_callable($service) || (is_string($service) && class_exists($service))) {
                 $service = $this->resolve($service);
