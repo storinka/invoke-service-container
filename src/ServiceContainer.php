@@ -37,7 +37,7 @@ class ServiceContainer
 
             $this->singletons[$abstract] = $service;
         } else {
-            return null;
+            return $this->resolve($abstract);
         }
 
         return $service;
@@ -52,17 +52,20 @@ class ServiceContainer
             return $service(...$params);
         }
 
-        if (class_exists($service)) {
+        if (is_string($service) && class_exists($service)) {
             $reflectionClass = new ReflectionClass($service);
-            $reflectionConstructor = $reflectionClass->getConstructor();
 
-            if ($reflectionConstructor) {
-                $params = $this->resolveParameters($reflectionConstructor->getParameters());
-            } else {
-                $params = [];
+            if ($reflectionClass->isInstantiable()) {
+                $reflectionConstructor = $reflectionClass->getConstructor();
+
+                if ($reflectionConstructor) {
+                    $params = $this->resolveParameters($reflectionConstructor->getParameters());
+                } else {
+                    $params = [];
+                }
+
+                return new $service(...$params);
             }
-
-            return new $service(...$params);
         }
 
         return null;
