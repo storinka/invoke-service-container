@@ -1,19 +1,27 @@
 {
-  "name": "storinka/invoke-service-container",
-  "description": "Invoke Service Container",
-  "type": "library",
-  "license": "MIT",
-  "authors": [
-    {
-      "name": "Davyd Kohut",
-      "email": "davyd.kohut@gmail.com"
+    "name": "storinka/invoke-service-container",
+    "description": "Invoke Service Container",
+    "type": "library",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Davyd Kohut",
+            "email": "davyd.kohut@gmail.com"
+        }
+    ],
+    "minimum-stability": "dev",
+    "prefer-stable": true,
+    "autoload": {
+        "psr-4": {
+            "Invoke\\Di\\": "src"
+        }
+    },
+    "autoload-dev": {
+        "psr-4": {
+            "Tests\\": "tests"
+        }
+    },
+    "require-dev": {
+        "phpunit/phpunit": "^9.5"
     }
-  ],
-  "minimum-stability": "dev",
-  "require": {},
-  "autoload": {
-    "psr-4": {
-      "Invoke\\Di\\": "src"
-    }
-  }
 }
